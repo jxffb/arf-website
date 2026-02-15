@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arf! Track your pet's life</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        accent: '#F59E0B',
+                        dark: '#1F2937'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        }
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .bounce-in {
+            animation: bounceIn 1s ease-out;
+        }
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <i class="fas fa-paw text-3xl text-primary mr-3"></i>
+                    <span class="text-2xl font-bold text-gray-900">Arf!</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-700 hover:text-primary transition-colors">Features</a>
+                    <a href="#about" class="text-gray-700 hover:text-primary transition-colors">About</a>
+                    <a href="#contact" class="text-gray-700 hover:text-primary transition-colors">Contact</a>
+                    <a href="privacy.html" class="text-gray-700 hover:text-primary transition-colors">Privacy</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#features" class="block px-3 py-2 text-gray-700 hover:text-primary">Features</a>
+                <a href="#about" class="block px-3 py-2 text-gray-700 hover:text-primary">About</a>
+                <a href="#contact" class="block px-3 py-2 text-gray-700 hover:text-primary">Contact</a>
+                <a href="privacy.html" class="block px-3 py-2 text-gray-700 hover:text-primary">Privacy</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 bounce-in">
+                    Track your pet's life
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-gray-100 max-w-3xl mx-auto">
+                    The ultimate companion app for pet parents. Manage health records, track activities, 
+                    set reminders, and capture every precious moment of your furry friend's journey.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-white text-primary px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg">
+                        <i class="fab fa-apple mr-2"></i>Download on App Store
+                    </button>
+                    <button class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-primary transition-colors">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Floating elements -->
+        <div class="absolute top-20 left-10 floating">
+            <i class="fas fa-heart text-4xl text-pink-300 opacity-60"></i>
+        </div>
+        <div class="absolute top-40 right-20 floating" style="animation-delay: 1s;">
+            <i class="fas fa-bone text-3xl text-yellow-300 opacity-60"></i>
+        </div>
+        <div class="absolute bottom-40 left-20 floating" style="animation-delay: 2s;">
+            <i class="fas fa-paw text-4xl text-blue-300 opacity-60"></i>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Everything your pet needs
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive pet care management with smart features designed for modern pet parents
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Pet Profiles -->
+                <div class="feature-card bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-user-pet text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Pet Profiles</h3>
+                    <p class="text-gray-600 mb-6">
+                        Create detailed profiles for each pet with photos, breed info, age, weight, and personal details. 
+                        Keep everything organized in one place.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Photo galleries</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Breed & age tracking</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Weight monitoring</li>
+                    </ul>
+                </div>
+
+                <!-- Smart Reminders -->
+                <div class="feature-card bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-bell text-2xl text-secondary"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Smart Reminders</h3>
+                    <p class="text-gray-600 mb-6">
+                        Never miss important pet care tasks with smart templates, 
+                        priority levels, and timely notifications.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Notifications</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Priority levels</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Timely notifications</li>
+                    </ul>
+                </div>
+
+                <!-- Health Tracking -->
+                <div class="feature-card bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-heartbeat text-2xl text-red-500"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Health Tracking</h3>
+                    <p class="text-gray-600 mb-6">
+                        Comprehensive health record management with medical records, 
+                        vaccination history, and weight monitoring charts.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Medical records</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Vaccination history</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Weight charts</li>
+                    </ul>
+                </div>
+
+                <!-- Activity Logging -->
+                <div class="feature-card bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-running text-2xl text-accent"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Activity Logging</h3>
+                    <p class="text-gray-600 mb-6">
+                        Track walks, play sessions, training, and other activities with 
+                        duration tracking and location integration.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Activity tracking</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Duration monitoring</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Location integration</li>
+                    </ul>
+                </div>
+
+                <!-- Nutrition Management -->
+                <div class="feature-card bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-utensils text-2xl text-purple-500"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Nutrition Management</h3>
+                    <p class="text-gray-600 mb-6">
+                        Track daily feeding schedules, food types, portion control, 
+                        and special dietary requirements.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Food diary</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Portion control</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Dietary notes</li>
+                    </ul>
+                </div>
+
+                <!-- Journal & Notes -->
+                <div class="feature-card bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-book text-2xl text-indigo-500"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Journal & Notes</h3>
+                    <p class="text-gray-600 mb-6">
+                        Keep detailed notes about your pet's behavior, mood, and special moments 
+                        with rich text support and search functionality.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Daily journal</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Rich text support</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Search & organization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                        Built with love for pet parents
+                    </h2>
+                    <p class="text-xl text-gray-600 mb-8">
+                        Arf! is designed to make pet care management effortless and enjoyable. 
+                        Whether you have one pet or many, our comprehensive features help you 
+                        stay organized and never miss important moments.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-shield-alt text-2xl text-primary mr-4"></i>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">Privacy First</h3>
+                                <p class="text-gray-600">All data stored locally on your device</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-mobile-alt text-2xl text-secondary mr-4"></i>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">Modern Design</h3>
+                                <p class="text-gray-600">Beautiful, intuitive interface for iOS</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-sync text-2xl text-accent mr-4"></i>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">Smart Features</h3>
+                                <p class="text-gray-600">Location-aware reminders and smart templates</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-blue-400 to-purple-600 rounded-3xl p-8 shadow-2xl">
+                        <div class="bg-white rounded-2xl p-6 shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-paw text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">Buddy</h3>
+                                    <p class="text-sm text-gray-500">Golden Retriever • 3 years old</p>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-600">Weight</span>
+                                    <span class="font-semibold">65 lbs</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-600">Next Vet Visit</span>
+                                    <span class="font-semibold text-green-600">Tomorrow</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-600">Last Walk</span>
+                                    <span class="font-semibold">2 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Ready to start tracking?
+            </h2>
+            <p class="text-xl text-gray-600 mb-8">
+                Download Arf! today and give your pet the care they deserve
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <button class="bg-primary text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-700 transition-colors shadow-lg">
+                    <i class="fab fa-apple mr-2"></i>Download on App Store
+                </button>
+                <button class="border-2 border-primary text-primary px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary hover:text-white transition-colors">
+                    Learn More
+                </button>
+            </div>
+            <div class="text-center">
+                <p class="text-gray-600 mb-4">Questions? Contact us at <a href="mailto:apps@kantoprojects.com" class="text-primary hover:underline">apps@kantoprojects.com</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-paw text-3xl text-primary mr-3"></i>
+                        <span class="text-2xl font-bold">Arf!</span>
+                    </div>
+                    <p class="text-gray-400">
+                        Track your pet's life with the ultimate companion app for pet parents.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Features</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Pet Profiles</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Health Tracking</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Activity Logging</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Smart Reminders</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                        <li><a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Arf! All rights reserved. Built with ❤️ for pet lovers everywhere.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('bounce-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-white/95', 'backdrop-blur-sm');
+            } else {
+                nav.classList.remove('bg-white/95', 'backdrop-blur-sm');
+            }
+        });
+    </script>
+</body>
+</html> 
